@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Royal Oud - Luxury Perfumes</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+      body {
+        background: #111;
+        color: #eee;
+        text-align: center;
+      }
+
+      /* HERO / SLIDER */
+      .hero {
+        width: 100%;
+        height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #111;
+        position: relative;
+        overflow: hidden;
+      }
+      .slider {
+        display: flex;
+        width: 300%; /* 3 images = 300% */
+        transition: transform 0.5s ease;
+      }
+      .images {
+        flex: 0 0 100%;
+        height: 60vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .images img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        cursor: pointer;
+      }
+
+      /* ARROWS */
+      #prevBtn,
+      #nextBtn {
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        font-size: 28px;
+        padding: 12px;
+        cursor: pointer;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: 0.3s;
+        z-index: 5;
+      }
+      #prevBtn:hover,
+      #nextBtn:hover {
+        background: #d6c16c;
+        color: #111;
+      }
+      #prevBtn {
+        left: 15px;
+      }
+      #nextBtn {
+        right: 15px;
+      }
+
+      /* DESCRIPTION */
+      .description {
+        width: 90%;
+        max-width: 700px;
+        margin: 30px auto;
+        padding: 25px;
+        background: #1a1a1a;
+        border-radius: 12px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+      }
+      .product-details h2 {
+        font-size: 28px;
+        margin-bottom: 12px;
+        color: #d6c16c;
+      }
+      .product-details p {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+      .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+      }
+      .add-to-cart,
+      .buy-now {
+        padding: 12px 25px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        color: white;
+        transition: 0.3s;
+      }
+      .add-to-cart {
+        background: #c858f1;
+      }
+      .add-to-cart:hover {
+        background: #a93ed8;
+      }
+      .buy-now {
+        background: #d6c16c;
+        color: #111;
+      }
+      .buy-now:hover {
+        background: #bba14e;
+      }
+
+      /* MODAL */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        justify-content: center;
+        align-items: center;
+      }
+      .modal-content {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 10px;
+      }
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 32px;
+        color: white;
+        cursor: pointer;
+      }
+
+      /* FOOTER */
+      footer {
+        background: #1c1c1c;
+        color: white;
+        text-align: center;
+        margin-top: 40px;
+      }
+      .footer-top {
+        background: #2a2a2a;
+        padding: 12px;
+      }
+      .footer-top a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .footer-bottom {
+        background: #111;
+        padding: 12px;
+        font-size: 13px;
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          height: 40vh;
+        }
+        .images {
+          height: 40vh;
+        }
+        .button-group {
+          flex-direction: column;
+        }
+        .add-to-cart,
+        .buy-now {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HERO SECTION -->
+    <div class="hero">
+      <button type="button" id="prevBtn">❮</button>
+      <div class="slider" id="slider">
+        <div class="images">
+          <img src="https://i.postimg.cc/BZBJjBfP/Gemini-Generated-Image-uofscuofscuofscu.png" alt="Royal Oud 1" />
+        </div>
+        <div class="images">
+          <img src="https://i.postimg.cc/25DHLhD3/Gemini-Generated-Image-9kp7aw9kp7aw9kp7.png" alt="Royal Oud 2" />
+        </div>
+        <div class="images">
+          <img src="https://i.postimg.cc/kGvj7PxC/Gemini-Generated-Image-bglg9ebglg9ebglg.png" alt="Royal Oud 3" />
+        </div>
+      </div>
+      <button type="button" id="nextBtn">❯</button>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="description">
+      <div class="product-details">
+        <h2>Amber Essence</h2>
+        <p>A regal fragrance crafted with rare oud wood and exotic spices.</p>
+        <p><strong>Price: ₹7,999</strong></p>
+        <p>⭐⭐⭐⭐⭐ (5/5)</p>
+        <div class="button-group">
+          <button
+            class="add-to-cart"
+            onclick="addToCart('Royal Oud',7999,'https://picsum.photos/200/200?random=1')"
+          >
+            Add to Cart
+          </button>
+          <button class="buy-now">Buy Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL -->
+    <div id="imageModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="modalImg" />
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-top"><a href="#">Back to top</a></div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Luxury Perfumes. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+      // SLIDER
+      const slider = document.getElementById("slider");
+      const slides = document.querySelectorAll(".images");
+      let current = 0;
+      function goTo(i) {
+        current = Math.max(0, Math.min(i, slides.length - 1));
+        slider.style.transform = `translateX(-${current * 100}%)`;
+      }
+      document.getElementById("prevBtn").onclick = () => goTo(current - 1);
+      document.getElementById("nextBtn").onclick = () => goTo(current + 1);
+
+      // MODAL
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImg");
+      const closeBtn = document.getElementsByClassName("close")[0];
+      document.querySelectorAll(".images img").forEach((img) => {
+        img.onclick = () => {
+          modal.style.display = "flex";
+          modalImg.src = img.src;
+        };
+      });
+      closeBtn.onclick = () => (modal.style.display = "none");
+      window.onclick = (e) => {
+        if (e.target == modal) modal.style.display = "none";
+      };
+
+      // CART
+      function addToCart(name, price, img) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push({ name, price, img, qty: 1 });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert(name + " added to cart!");
+      }
+      window.addToCart = addToCart;
+    </script>
+  </body>
+</html>
